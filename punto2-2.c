@@ -13,7 +13,7 @@ typedef struct
 void CargarTareas (Tarea **buff, int a);
 void MoverTarea (Tarea **buff, int a , Tarea **Trealizada);
 void MostrarTarea (Tarea **buff, int a);
-void Buscar_ID (Tarea **Tpendiente, Tarea **Trealizada, int a);
+void BuscarTarea (Tarea **Tpendiente, Tarea **Trealizada, int a);
 
 int main ()
 {
@@ -38,7 +38,7 @@ int main ()
     printf("\n_______________________Tareas Pendientes________________________\n");
     MostrarTarea(tarea, CantTarea);
     printf("\n_______________Buscar Tarea por ID__________________________\n");
-    Buscar_ID(tarea_realizada,tarea, CantTarea);
+    BuscarTarea(tarea_realizada,tarea, CantTarea);
 return 0;
 }
 
@@ -103,7 +103,7 @@ void MostrarTarea (Tarea **buff, int a)
     }
 }
 
-void Buscar_ID (Tarea **Tpendiente, Tarea **Trealizada, int a)
+void BuscarTarea (Tarea **Tpendiente, Tarea **Trealizada, int a)
 {
     int ID;
     printf("Ingrese el numero de la tarea que quiere buscar: \n");
