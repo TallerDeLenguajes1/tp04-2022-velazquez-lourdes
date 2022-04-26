@@ -13,7 +13,7 @@ typedef struct
 void CargarTareas (Tarea **buff, int a);
 void MoverTarea (Tarea **buff, int a , Tarea **Trealizada);
 void MostrarTarea (Tarea **buff, int a);
-void BuscarTarea (Tarea **Tpendiente, Tarea **Trealizada, int a);
+void BusquedaPorPalabra (Tarea **Tpendiente, Tarea **Trealizada, int a);
 
 int main ()
 {
@@ -38,7 +38,7 @@ int main ()
     printf("\n_______________________Tareas Pendientes________________________\n");
     MostrarTarea(tarea, CantTarea);
     printf("\n_______________Buscar tarea por palabra________________________\n");
-    BuscarTarea(tarea, tarea_realizada, CantTarea);
+    BusquedaPorPalabra(tarea, tarea_realizada, CantTarea);
 return 0;
 }
 
@@ -104,7 +104,7 @@ void MostrarTarea (Tarea **buff, int a)
     }
 }
 
-void BuscarTarea (Tarea **Tpendiente, Tarea **Trealizada, int a)
+void BusquedaPorPalabra (Tarea **Tpendiente, Tarea **Trealizada, int a)
 {
     char palabra[50];
     int boolean;
