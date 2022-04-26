@@ -13,6 +13,7 @@ typedef struct
 void CargarTareas (Tarea **buff, int a);
 void MoverTarea (Tarea **buff, int a , Tarea **Trealizada);
 void MostrarTarea (Tarea **buff, int a);
+void BuscarTarea (Tarea **Tpendiente, Tarea **Trealizada, int a);
 
 int main ()
 {
@@ -36,6 +37,8 @@ int main ()
     MostrarTarea(tarea_realizada, CantTarea);
     printf("\n_______________________Tareas Pendientes________________________\n");
     MostrarTarea(tarea, CantTarea);
+    printf("\n_______________Buscar tarea por palabra________________________\n");
+    BuscarTarea(tarea, tarea_realizada, CantTarea);
 return 0;
 }
 
@@ -47,7 +50,7 @@ void CargarTareas(Tarea **buff, int a)
         buff[i]=(Tarea*)malloc(sizeof(Tarea));
         char AuxDescripcion[1000];
         buff[i]->TareaID= 1+ i;
-        printf("Tarea numero Numero %d :", buff[i]->TareaID);
+        printf("Tarea numero Numero %d :\n", buff[i]->TareaID);
         printf("\nDescripcion de la tarea numero %d: ", buff[i]->TareaID);
         gets(AuxDescripcion);
         fflush(stdin);
@@ -55,7 +58,7 @@ void CargarTareas(Tarea **buff, int a)
         buff[i]->Descripcion = (char*)malloc(sizeof(char)*Caracter);
         strcpy(buff[i]->Descripcion, AuxDescripcion);
         buff[i]->Duracion= 10 + rand ()%100;
-        printf("\nDuracion: %d ", buff[i]->Duracion);
+        printf("\nDuracion %d :", buff[i]->Duracion);
         printf("\n ________________________________________________________\n");
         Caracter= 0; 
     } 
@@ -66,8 +69,9 @@ void MoverTarea (Tarea **Tpendiente, int a, Tarea **Trealizada )
     char pregunta;
     for (int i = 0; i < a; i++)
     {
-      printf("Tarea Numero: %d", Tpendiente[i]->TareaID);
-      printf("¿La tarea fue realizada? (s o n)  ");
+      printf("Tarea Numero: %d \n", Tpendiente[i]->TareaID);
+      printf("%s \n", Tpendiente[i]->Descripcion);
+      printf(" ¿La tarea fue realizada? (s o n)  ");
       scanf("%c" , &pregunta);
       fflush(stdin);
         if (pregunta == 's')
@@ -98,4 +102,44 @@ void MostrarTarea (Tarea **buff, int a)
         printf("Duracion %d : \n", buff[i]->Duracion);
        }  
     }
+}
+
+void BuscarTarea (Tarea **Tpendiente, Tarea **Trealizada, int a)
+{
+    char palabra[50];
+    int boolean;
+    printf("Ingrese la palabra con la que quiere buscar la tarea \n");
+    scanf("%s", &palabra);
+    fflush(stdin);
+    printf("______________________________________________________________");
+    for (int i = 0; i < a; i++)
+    {
+        if (Tpendiente[i] != NULL)
+        {
+            boolean = strcmp (Tpendiente[i]->Descripcion , palabra);
+            if (boolean == 0)
+            {
+                printf("Tarea numero %d \n", Tpendiente[i]->TareaID);
+                printf("Descripcion de la Tarea : %s \n", Tpendiente[i]->Descripcion);
+                printf("Duracion de la tarea :%d \n", Tpendiente[i]->Duracion);
+            }
+        }
+        else
+        {
+            if (Trealizada[i] != NULL)
+            {
+                boolean = strcmp (Trealizada[i]->Descripcion , palabra);
+                if (boolean == 0)
+                {
+                    printf("Tarea numero %d \n", Trealizada[i]->TareaID);
+                    printf("Descripcion de la Tarea : %s \n", Trealizada[i]->Descripcion);
+                    printf("Duracion de la tarea :%d \n", Trealizada[i]->Duracion);
+                }
+                
+            }
+            
+        }
+        
+    }
+    
 }
