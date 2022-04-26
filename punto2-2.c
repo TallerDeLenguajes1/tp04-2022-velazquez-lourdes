@@ -13,6 +13,7 @@ typedef struct
 void CargarTareas (Tarea **buff, int a);
 void MoverTarea (Tarea **buff, int a , Tarea **Trealizada);
 void MostrarTarea (Tarea **buff, int a);
+void Buscar_ID (Tarea **Tpendiente, Tarea **Trealizada, int a);
 
 int main ()
 {
@@ -24,7 +25,7 @@ int main ()
     tarea_realizada = (Tarea**)malloc(sizeof(Tarea*)*CantTarea);
    while (CantTarea == 0)
    {
-    printf("Ingrese la canrtidad de tareas a cargar: ");
+    printf("Ingrese la cantidad de tareas a cargar: ");
     scanf("%d", &CantTarea);
     fflush(stdin);
    }
@@ -36,6 +37,8 @@ int main ()
     MostrarTarea(tarea_realizada, CantTarea);
     printf("\n_______________________Tareas Pendientes________________________\n");
     MostrarTarea(tarea, CantTarea);
+    printf("\n_______________Buscar Tarea por ID__________________________\n");
+    Buscar_ID(tarea_realizada,tarea, CantTarea);
 return 0;
 }
 
@@ -98,4 +101,39 @@ void MostrarTarea (Tarea **buff, int a)
         printf("Duracion %d : \n", buff[i]->Duracion);
        }  
     }
+}
+
+void Buscar_ID (Tarea **Tpendiente, Tarea **Trealizada, int a)
+{
+    int ID;
+    printf("Ingrese el numero de la tarea que quiere buscar: \n");
+    scanf("%d", &ID);
+    for (int i = 0; i < a; i++)
+    {
+        if (Tpendiente[i] != NULL)
+        {
+            if (Tpendiente[i]->TareaID == ID)
+            {
+                printf("Tarea Numero %d \n", Tpendiente[i]->TareaID);
+                printf("Descripcion : %s \n", Tpendiente[i]->Descripcion);
+                printf("Duracion : %d \n", Tpendiente[i]->Duracion);
+            }
+        }
+        else 
+        {
+            if (Trealizada[i] != NULL)
+            {
+                if (Trealizada[i]->TareaID == ID)
+                {
+                    printf("Tarea Numero %d \n", Trealizada[i]->TareaID);
+                    printf("Descripcion : %s \n", Trealizada[i]->Descripcion);
+                    printf("Duracion : %d \n", Trealizada[i]->Duracion);
+                }
+                
+            }
+            
+        }
+        
+    }
+    
 }
